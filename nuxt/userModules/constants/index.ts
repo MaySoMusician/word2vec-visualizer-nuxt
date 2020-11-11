@@ -9,3 +9,5 @@ export const titlePerPage = {
   index: '理系版 にほんごであそぼ inspired by ラムダ技術部',
   feedback: '不具合・要望フォーム',
 }
+
+export const baseUrl = 'https://playwithjapanese.fun/'

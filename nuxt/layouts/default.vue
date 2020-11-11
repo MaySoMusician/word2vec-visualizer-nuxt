@@ -54,7 +54,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { websiteName, websiteCopyright } from '@/userModules/constants'
+import { websiteName, websiteCopyright, baseUrl } from '@/userModules/constants'
 import Logo from '@/assets/logo2.svg?inline'
 
 type Data = {
@@ -98,6 +98,13 @@ export default Vue.extend<Data, unknown, Computed, unknown>({
     copyright() {
       return websiteCopyright
     },
+  },
+  head() {
+    return {
+      link: [
+        { rel: 'canonical', href: `${baseUrl}${this.$route.path.slice(1)}` },
+      ],
+    }
   },
   /* async mounted() {
   }, */
