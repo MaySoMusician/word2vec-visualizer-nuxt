@@ -106,7 +106,7 @@ export default Vue.extend<Data, unknown, unknown, unknown>({
         font-size: 1.2rem;
 
         &.v-tab--active {
-          color: black;
+          color: black !important;
         }
       }
       // color: black;
