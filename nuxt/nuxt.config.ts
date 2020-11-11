@@ -32,9 +32,14 @@ const config: NuxtConfig = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'og:type', property: 'og:type', content: 'website' },
       { hid: 'description', name: 'description', content: websiteDescription },
-      { hid: 'og:site_name', name: 'og:site_name', content: websiteName },
+      {
+        hid: 'og:description',
+        property: 'og:description',
+        content: websiteDescription,
+      },
+      { hid: 'og:type', property: 'og:type', content: 'website' },
+      { hid: 'og:site_name', property: 'og:site_name', content: websiteName },
       {
         hid: 'og:image',
         property: 'og:image',

@@ -65,7 +65,7 @@ export default Vue.extend<Data, unknown, unknown, unknown>({
       title: titlePerPage.index,
       titleTemplate: '',
       meta: [
-        { hid: 'og:title', name: 'og:title', content: titlePerPage.index },
+        { hid: 'og:title', property: 'og:title', content: titlePerPage.index },
       ],
     }
   },
