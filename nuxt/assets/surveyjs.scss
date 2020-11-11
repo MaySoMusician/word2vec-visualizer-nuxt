@@ -1,0 +1,80 @@
+.sv-container-modern,
+.sv-title,
+.sv-completedpage {
+  font-family: 'Noto Sans JP', sans-serif !important;
+}
+
+.sv-title,
+.sv-panel .sv-question__title {
+  font-size: 1.4rem !important;
+}
+
+.sv-panel__title {
+  font-size: 1rem !important;
+}
+
+.sv-question {
+  &__required-text {
+    font-size: 1rem !important;
+  }
+
+  &__description {
+    color: rgb(78 78 78) !important;
+    font-size: 0.8rem !important;
+    padding: {
+      left: 0.7rem !important;
+    }
+  }
+}
+
+.sv-btn {
+  font-size: 1rem !important;
+  padding: {
+    left: 1.8rem !important;
+    right: 1.8rem !important;
+  }
+}
+
+.sv-panel {
+  border-top: 1px solid #d4d4d4 !important;
+  padding-top: 1rem !important;
+}
+
+.sv-panel__footer {
+  padding-top: 0 !important;
+}
+
+.sv-row:not(:last-child),
+.sv-panel .sv-row:not(:last-child) {
+  padding-bottom: 1.2rem !important;
+}
+
+.sv-footer {
+  padding: {
+    top: 1rem !important;
+  }
+}
+
+.sv-body__footer {
+  margin-top: 0 !important;
+}
+
+.sv-panel .sv-row:nth-last-of-type(1) {
+  padding-bottom: 0 !important;
+}
+
+.sv-completedpage {
+  height: auto !important;
+  padding: {
+    top: 1.5rem !important;
+    bottom: 1.5rem !important;
+  }
+
+  p {
+    font-size: 1.2rem !important;
+    font-weight: 500 !important;
+    margin: {
+      bottom: 0 !important;
+    }
+  }
+}

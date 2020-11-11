@@ -1,0 +1,47 @@
+name: Deploy to Development App
+
+on:
+  push:
+    branches:
+      - default
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node: [12.x]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v2.1.2
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Install essensial tools
+        run: |
+          npm install -g yarn firebase-tools
+
+      - name: Build `nuxt` app
+        run: |
+          yarn install --frozen-lockfile
+          yarn nuxt-ts build
+          yarn build:copy:ssr -v
+        env:
+          APP_ENV: development
+        working-directory: ./nuxt
+
+      - name: Build the server-side functions
+        run: npm ci
+        working-directory: ./functions
+
+      - name: Deploy (Cloud Functions & Hosting)
+        run: |
+          firebase use default
+          firebase deploy --only functions,hosting --token $FIREBASE_TOKEN
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
