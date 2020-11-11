@@ -24,14 +24,14 @@
       </nuxt-link>
       <v-spacer />
       <v-btn icon color="black" :ripple="false"> </v-btn>
-      <!-- <a
+      <a
         class="Header-Icon"
         href="https://github.com/MaySoMusician/word2vec-visualizer-nuxt"
         target="_blank"
         rel="noopener"
       >
         <v-icon color="black" size="40px">mdi-github</v-icon>
-      </a> -->
+      </a>
     </v-app-bar>
     <v-main>
       <v-container id="MainContainer">
