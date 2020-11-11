@@ -23,7 +23,6 @@
         <Logo class="Logo" />
       </nuxt-link>
       <v-spacer />
-      <v-btn icon color="black" :ripple="false"> </v-btn>
       <a
         class="Header-Icon"
         href="https://github.com/MaySoMusician/word2vec-visualizer-nuxt"
