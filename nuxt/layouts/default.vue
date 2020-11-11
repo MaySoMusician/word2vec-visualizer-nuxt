@@ -100,10 +100,10 @@ export default Vue.extend<Data, unknown, Computed, unknown>({
     },
   },
   head() {
+    const href = `${baseUrl}${this.$route.path.slice(1)}`
     return {
-      link: [
-        { rel: 'canonical', href: `${baseUrl}${this.$route.path.slice(1)}` },
-      ],
+      meta: [{ hid: 'og:url', property: 'og:url', content: href }],
+      link: [{ rel: 'canonical', href }],
     }
   },
   /* async mounted() {
