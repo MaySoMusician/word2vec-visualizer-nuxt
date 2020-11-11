@@ -2,8 +2,8 @@
 
 ![Deploy to Development App](https://github.com/MaySoMusician/word2vec-visualizer-nuxt/workflows/Deploy%20to%20Development%20App/badge.svg)
 
-<div>
-  <span style="font-size: 120%; font-weight: bold">Inspired by [単語を数値化して遊んでみた](https://www.youtube.com/watch?v=sK3HqLwag_w)</span>
+<div style="font-size: 120%; font-weight: bold">
+  Inspired by <a href="https://www.youtube.com/watch?v=sK3HqLwag_w">単語を数値化して遊んでみた</a>
 </div>
 
 ## 使用した技術・モノ
