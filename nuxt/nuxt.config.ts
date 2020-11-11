@@ -34,10 +34,21 @@ const config: NuxtConfig = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'og:type', property: 'og:type', content: 'website' },
       { hid: 'description', name: 'description', content: websiteDescription },
+      { hid: 'og:site_name', name: 'og:site_name', content: websiteName },
       {
         hid: 'og:image',
         property: 'og:image',
-        content: 'https://nobavideo-dev.web.app/ogp-image-1.png',
+        content: 'https://playwithjapanese.fun/ogp-image-1.png',
+      },
+      {
+        hid: 'twitter:card',
+        name: 'twitter:card',
+        content: 'summary_large_image',
+      },
+      {
+        hid: 'twitter:site',
+        name: 'twitter:site',
+        content: '@MaySoMusician',
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
