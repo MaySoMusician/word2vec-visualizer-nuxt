@@ -30,7 +30,7 @@
         </v-row>
         <v-row justify="center" align="center">
           <v-col cols="12">
-            <v-tabs-items :value="resultTab">
+            <v-tabs-items :value="resultTab" touchless>
               <v-tab-item
                 :transition="resultTabTransition"
                 :reverse-transition="resultTabTransition"
