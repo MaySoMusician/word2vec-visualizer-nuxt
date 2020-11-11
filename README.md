@@ -2,15 +2,17 @@
 
 ![Deploy to Development App](https://github.com/MaySoMusician/word2vec-visualizer-nuxt/workflows/Deploy%20to%20Development%20App/badge.svg)
 
-<span style="font-size: 120%; font-weight: bold">Inspired by [単語を数値化して遊んでみた](https://www.youtube.com/watch?v=sK3HqLwag_w)</span>
+<div>
+  <span style="font-size: 120%; font-weight: bold">Inspired by [単語を数値化して遊んでみた](https://www.youtube.com/watch?v=sK3HqLwag_w)</span>
+</div>
 
 ## 使用した技術・モノ
 
-- フロントエンド
+- フロントエンド （このレポジトリ）
   - Nuxt.js + TypeScript
   - Firebase Hosting
   - Cloud Functions for Firebase
-- API（バックエンド）
+- API （レポジトリ準備中）
   - Cloud Run + Python (Docker)
   - [Gensim](https://radimrehurek.com/gensim/index.html)
 - 学習データ
