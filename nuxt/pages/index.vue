@@ -25,7 +25,11 @@
         <v-tab class="Playground-TabBarItem">単語を数値化する！</v-tab>
         <v-tab class="Playground-TabBarItem"> 単語のたし算・ひき算 </v-tab>
       </v-tabs>
-      <v-tabs-items v-model="playgroundTab" class="Playground-TabContainer">
+      <v-tabs-items
+        v-model="playgroundTab"
+        class="Playground-TabContainer"
+        touchless
+      >
         <v-tab-item>
           <section class="Playground-TabItem">
             <h2>単語を数値化する！</h2>
