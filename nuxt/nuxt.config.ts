@@ -168,7 +168,7 @@ const config: NuxtConfig = {
       name: websiteName,
       short_name: websiteName,
       description: websiteDescription,
-      display: 'minimal-ui',
+      display: 'fullscreen',
       lang: 'ja',
     },
   },
