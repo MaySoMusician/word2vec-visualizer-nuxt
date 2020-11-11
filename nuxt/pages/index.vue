@@ -15,7 +15,13 @@
         >
       </section>
       <!-- <v-divider /> -->
-      <v-tabs v-model="playgroundTab" class="Playground-TabBar" fixed-tabs>
+      <v-tabs
+        v-model="playgroundTab"
+        class="Playground-TabBar"
+        background-color="primary"
+        fixed-tabs
+        slider-color="black"
+      >
         <v-tab class="Playground-TabBarItem">単語を数値化する！</v-tab>
         <v-tab class="Playground-TabBarItem"> 単語のたし算・ひき算 </v-tab>
       </v-tabs>
@@ -58,6 +64,9 @@ export default Vue.extend<Data, unknown, unknown, unknown>({
     return {
       title: titlePerPage.index,
       titleTemplate: '',
+      meta: [
+        { hid: 'og:title', name: 'og:title', content: titlePerPage.index },
+      ],
     }
   },
 })
@@ -95,6 +104,10 @@ export default Vue.extend<Data, unknown, unknown, unknown>({
     &Bar {
       &Item {
         font-size: 1.2rem;
+
+        &.v-tab--active {
+          color: black;
+        }
       }
       // color: black;
     }
