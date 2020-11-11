@@ -3,7 +3,11 @@
 // import http from 'http'
 import { NuxtConfig } from '@nuxt/types'
 import colors from 'vuetify/es5/util/colors'
-import { websiteName, websiteDescription } from './userModules/constants'
+import {
+  websiteName,
+  websiteNameShort,
+  websiteDescription,
+} from './userModules/constants'
 import firebaseConfig from './firebase.config'
 
 const config: NuxtConfig = {
@@ -166,7 +170,7 @@ const config: NuxtConfig = {
     },
     manifest: {
       name: websiteName,
-      short_name: websiteName,
+      short_name: websiteNameShort,
       description: websiteDescription,
       display: 'fullscreen',
       lang: 'ja',
