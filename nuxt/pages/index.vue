@@ -22,21 +22,25 @@
         fixed-tabs
         slider-color="black"
       >
-        <v-tab class="Playground-TabBarItem">単語を数値化する！</v-tab>
-        <v-tab class="Playground-TabBarItem"> 単語のたし算・ひき算 </v-tab>
+        <v-tab class="Playground-TabBarItem" href="#vector"
+          >単語を数値化する！</v-tab
+        >
+        <v-tab class="Playground-TabBarItem" href="#most-similar">
+          単語のたし算・ひき算
+        </v-tab>
       </v-tabs>
       <v-tabs-items
         v-model="playgroundTab"
         class="Playground-TabContainer"
         touchless
       >
-        <v-tab-item>
+        <v-tab-item value="vector">
           <section class="Playground-TabItem">
             <h2>単語を数値化する！</h2>
             <PlaygroundFormVector />
           </section>
         </v-tab-item>
-        <v-tab-item>
+        <v-tab-item value="most-similar">
           <section class="Playground-TabItem">
             <h2>単語のたし算・ひき算</h2>
             <PlaygroundFormMostSimilar />
@@ -53,16 +57,28 @@ import PlaygroundFormVector from '@/components/PlaygroundFormVector.vue'
 import PlaygroundFormMostSimilar from '@/components/PlaygroundFormMostSimilar.vue'
 import { titlePerPage } from '@/userModules/constants'
 
-type Data = {
-  playgroundTab: number | null
+type Data = {}
+
+type Computed = {
+  playgroundTab: string | null
 }
 
-export default Vue.extend<Data, unknown, unknown, unknown>({
+export default Vue.extend<Data, unknown, Computed, unknown>({
   components: { PlaygroundFormVector, PlaygroundFormMostSimilar },
   data() {
-    return {
-      playgroundTab: null,
-    }
+    return {}
+  },
+  computed: {
+    playgroundTab: {
+      get() {
+        return this.$route.query.mode as string
+      },
+      set(newValue) {
+        this.$router.replace({
+          query: { ...this.$route.query, mode: newValue },
+        })
+      },
+    },
   },
   head() {
     return {
