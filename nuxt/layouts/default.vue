@@ -113,6 +113,14 @@ export default Vue.extend<Data, unknown, Computed, unknown>({
 <style lang="scss">
 @import '~vuetify/src/styles/styles.sass';
 
+@font-face {
+  font-family: 'Mgen+ 1mn Subset Medium';
+  font-style: normal;
+  font-weight: 500;
+  src: url(~assets/fonts/mgenplus-1mn-subset-medium.woff2) format('woff2'),
+    url(~assets/fonts/mgenplus-1mn-subset-medium.woff) format('woff');
+}
+
 .v-application {
   font-feature-settings: 'palt' 1;
 

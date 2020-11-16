@@ -181,7 +181,7 @@ export default Vue.extend<Data, Method, Computed, unknown>({
 .PlaygroundForm {
   &-Result.v-textarea {
     textarea {
-      font-family: 'Courier New', Courier, monospace;
+      font-family: 'Mgen+ 1mn Subset Medium', monospace;
       font-size: 0.72rem;
       line-height: 140%;
       white-space: pre;
