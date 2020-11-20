@@ -94,7 +94,6 @@ export default Vue.extend<Data, unknown, Computed, unknown>({
 
 <style lang="scss" scoped>
 .Title {
-  line-height: 100%;
   text-align: center;
 
   > span {
@@ -104,11 +103,13 @@ export default Vue.extend<Data, unknown, Computed, unknown>({
   &-First {
     font-size: 2.4rem;
     font-weight: 900;
+    line-height: 105%;
   }
 
   &-Second {
     font-size: 1.3rem;
     font-weight: 700;
+    line-height: 120%;
   }
 
   &-Wrapper {
