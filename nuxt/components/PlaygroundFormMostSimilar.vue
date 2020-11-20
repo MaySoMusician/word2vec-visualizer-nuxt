@@ -288,6 +288,8 @@ export default Vue.extend<Data, Method, Computed, unknown>({
     },
     clear() {
       this.error = false
+      this.newWord = ''
+      this.newWordType = 'positive'
       this.terms = []
       this.similarities = []
       this.rawResult = ''
