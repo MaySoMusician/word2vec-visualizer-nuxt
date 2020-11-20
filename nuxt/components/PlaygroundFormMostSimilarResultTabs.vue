@@ -5,25 +5,42 @@
       :reverse-transition="resultTabTransition"
     >
       <v-divider />
-      <v-list class="mx-auto" dense :disabled="running" flat min-width="300px">
-        <v-list-item v-for="similarity in similarities" :key="similarity.word">
-          <v-list-item-content>
-            <div
-              class="d-flex"
-              :class="{
-                'PlaygroundForm-ResultList-Disabled': running,
-              }"
-            >
-              <span class="PlaygroundForm-ResultList-Word">{{
-                similarity.word
-              }}</span>
-              <div class="PlaygroundForm-ResultList-Similarity text-right">
-                <span>{{ formatSimilarity(similarity.similarity) }}</span>
+      <div>
+        <div class="d-flex justify-end px-4 mb-n1">
+          <span
+            class="d-inline-block"
+            style="
+              width: 4.9rem;
+              font-size: 0.9rem;
+              font-weight: 400;
+              text-align: center;
+            "
+            >類似率</span
+          >
+        </div>
+        <v-list class="pt-0" dense :disabled="running" flat>
+          <v-list-item
+            v-for="similarity in similarities"
+            :key="similarity.word"
+          >
+            <v-list-item-content>
+              <div
+                class="d-flex"
+                :class="{
+                  'PlaygroundForm-ResultList-Disabled': running,
+                }"
+              >
+                <span class="PlaygroundForm-ResultList-Word">{{
+                  similarity.word
+                }}</span>
+                <div class="PlaygroundForm-ResultList-Similarity text-right">
+                  <span>{{ formatSimilarity(similarity.similarity) }}</span>
+                </div>
               </div>
-            </div>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </div>
       <v-divider />
       <v-expansion-panels accordion flat tile>
         <v-expansion-panel>
@@ -171,8 +188,8 @@ export default Vue.extend<Data, Method, Computed, Props>({
 
     &-Similarity {
       position: relative;
-      font-size: 1.4rem;
-      font-weight: 700;
+      font-size: 1.2rem;
+      font-weight: 500;
       flex-grow: 1;
 
       margin: {
@@ -183,8 +200,8 @@ export default Vue.extend<Data, Method, Computed, Props>({
         content: '';
         position: absolute;
         top: 50%;
-        right: 4.3em;
-        width: calc(100% - 4.3em);
+        right: 4.9rem;
+        width: calc(100% - 4.9rem);
         height: 2px;
 
         background: repeating-linear-gradient(
