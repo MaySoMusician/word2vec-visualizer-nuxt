@@ -9,13 +9,8 @@
         <div class="d-flex justify-end px-4 mb-n1">
           <span
             class="d-inline-block"
-            style="
-              width: 4.9rem;
-              font-size: 0.9rem;
-              font-weight: 400;
-              text-align: center;
-            "
-            >類似率</span
+            style="font-size: 0.82rem; font-weight: 400; text-align: end"
+            >cos類似度</span
           >
         </div>
         <v-list class="pt-0" dense :disabled="running" flat>
@@ -159,7 +154,7 @@ export default Vue.extend<Data, Method, Computed, Props>({
         .input as HTMLTextAreaElement).select()
     },
     formatSimilarity(similarity: number) {
-      return `${(similarity * 100).toFixed(2)} %`
+      return similarity.toFixed(4)
     },
   },
 })
@@ -200,8 +195,8 @@ export default Vue.extend<Data, Method, Computed, Props>({
         content: '';
         position: absolute;
         top: 50%;
-        right: 4.9rem;
-        width: calc(100% - 4.9rem);
+        right: 4rem;
+        width: calc(100% - 4rem);
         height: 2px;
 
         background: repeating-linear-gradient(
