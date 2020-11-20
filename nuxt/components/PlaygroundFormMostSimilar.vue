@@ -86,7 +86,7 @@
               color=""
               :disabled="running || (terms.length === 0 && !error)"
               width="100%"
-              @click="clearInput()"
+              @click="clear()"
               >リセット</v-btn
             >
           </v-col>
@@ -104,95 +104,13 @@
         </v-row>
         <v-row justify="center" align="center">
           <v-col cols="12">
-            <v-tabs-items :value="resultTab">
-              <v-tab-item
-                :transition="resultTabTransition"
-                :reverse-transition="resultTabTransition"
-              >
-                <v-divider />
-                <v-list
-                  class="mx-auto"
-                  dense
-                  :disabled="running"
-                  flat
-                  min-width="300px"
-                >
-                  <v-list-item
-                    v-for="similarity in similarities"
-                    :key="similarity.word"
-                  >
-                    <v-list-item-content>
-                      <div
-                        class="d-flex"
-                        :class="{
-                          'PlaygroundForm-ResultList-Disabled': running,
-                        }"
-                      >
-                        <span class="PlaygroundForm-ResultList-Word">{{
-                          similarity.word
-                        }}</span>
-                        <div
-                          class="PlaygroundForm-ResultList-Similarity text-right"
-                        >
-                          <span>{{
-                            formatSimilarity(similarity.similarity)
-                          }}</span>
-                        </div>
-                      </div>
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-list>
-                <v-divider />
-                <v-expansion-panels accordion flat tile>
-                  <v-expansion-panel>
-                    <v-expansion-panel-header
-                      >生の出力</v-expansion-panel-header
-                    >
-                    <v-expansion-panel-content>
-                      <v-textarea
-                        ref="rawResultTextarea"
-                        v-model="rawResult"
-                        class="PlaygroundForm-RawResult"
-                        color="secondary"
-                        readonly
-                        hide-details
-                        label="生の出力"
-                        outlined
-                        rows="12"
-                        :placeholder="rawResultPlaceholder"
-                        @focus="selectAllRawResult"
-                      ></v-textarea>
-                    </v-expansion-panel-content>
-                  </v-expansion-panel>
-                </v-expansion-panels>
-              </v-tab-item>
-              <v-tab-item
-                :transition="resultTabTransition"
-                :reverse-transition="resultTabTransition"
-              >
-                <div class="text-center">
-                  <span class="error--text font-weight-bold">{{
-                    errorMessage
-                  }}</span>
-                </div>
-              </v-tab-item>
-              <v-tab-item
-                :transition="resultTabTransition"
-                :reverse-transition="resultTabTransition"
-              >
-                <div class="text-center error--text">
-                  <p class="mb-0 font-weight-bold">
-                    単語リストに存在しない単語が含まれていました。
-                  </p>
-                  <p class="mb-0 font-weight-bold">
-                    {{ errorMessage }}
-                  </p>
-                  <p class="mb-0">
-                    ※ リストに存在しない単語が他にも含まれている場合があります。
-                  </p>
-                </div>
-              </v-tab-item>
-            </v-tabs-items>
+            <PlaygroundFormMostSimilarResultTabs
+              :similarities="similarities"
+              :raw-result="rawResult"
+              :error="error"
+              :error-message="errorMessage"
+              :running="running"
+            />
           </v-col>
         </v-row>
       </v-container>
@@ -203,15 +121,12 @@
 <script lang="ts">
 import Vue from 'vue'
 import { beatifyMostSimilar } from '@/userModules/jsonBeautifier'
+import PlaygroundFormMostSimilarResultTabs from '@/components/PlaygroundFormMostSimilarResultTabs.vue'
+import { Similarity, Error } from '@/types/mostSimilar'
 
 type Term = {
   type: 'positive' | 'negative'
   word: string
-}
-
-type Similarity = {
-  word: string
-  similarity: number
 }
 
 type Data = {
@@ -221,15 +136,13 @@ type Data = {
   similarities: Similarity[]
   rawResult: string
   running: boolean
-  error: 'general' | 'notfound' | false
+  error: Error
   resultTabTransition: string | boolean
   errorMessage: string
 }
 
 type Computed = {
   newWordSanitized: string
-  rawResultPlaceholder: string
-  resultTab: number
   canAddNewWord: boolean
   canRun: boolean
 }
@@ -238,11 +151,10 @@ type Method = {
   addNewWord: () => void
   getMostSimilar: () => void
   inputOnKeyDown: (event: KeyboardEvent) => void
-  clearInput: () => void
-  selectAllRawResult: () => void
-  formatSimilarity: (similarity: number) => string
+  clear: () => void
 }
 export default Vue.extend<Data, Method, Computed, unknown>({
+  components: { PlaygroundFormMostSimilarResultTabs },
   data() {
     return {
       newWord: '',
@@ -261,13 +173,6 @@ export default Vue.extend<Data, Method, Computed, unknown>({
       if (!this.newWord) return ''
       const replaced = this.newWord.replace(/\s/g, '')
       return replaced
-    },
-    rawResultPlaceholder() {
-      return this.running ? '実行中...' : '実行結果がここに表示されます'
-    },
-    resultTab() {
-      if (!this.error) return 0
-      return this.error === 'notfound' ? 2 : 1
     },
     canAddNewWord() {
       return this.newWordSanitized !== '' && !this.running
@@ -381,18 +286,11 @@ export default Vue.extend<Data, Method, Computed, unknown>({
         }
       }
     },
-    clearInput() {
+    clear() {
       this.error = false
       this.terms = []
       this.similarities = []
       this.rawResult = ''
-    },
-    selectAllRawResult() {
-      ;((this.$refs.rawResultTextarea as Vue).$refs
-        .input as HTMLTextAreaElement).select()
-    },
-    formatSimilarity(similarity: number) {
-      return `${(similarity * 100).toFixed(2)} %`
     },
   },
 })
@@ -405,15 +303,6 @@ export default Vue.extend<Data, Method, Computed, unknown>({
       .v-chip__close {
         color: #757575 !important;
       }
-    }
-  }
-
-  &-RawResult.v-textarea {
-    textarea {
-      font-family: 'Mgen+ 1mn Subset Medium', monospace;
-      font-size: 0.72rem;
-      line-height: 140%;
-      white-space: pre;
     }
   }
 }
@@ -460,52 +349,9 @@ export default Vue.extend<Data, Method, Computed, unknown>({
     }
   }
 
-  &-Input,
-  &-Result {
-  }
-
   &-Input {
     font-size: 1rem;
     font-weight: 500;
-  }
-
-  &-ResultList {
-    &-Word {
-      font-size: 1.4rem;
-      font-weight: 700;
-    }
-
-    &-Similarity {
-      position: relative;
-      font-size: 1.4rem;
-      font-weight: 700;
-      flex-grow: 1;
-
-      margin: {
-        left: 0.5em;
-      }
-
-      > span::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        right: 4.3em;
-        width: calc(100% - 4.3em);
-        height: 2px;
-
-        background: repeating-linear-gradient(
-          to left,
-          #6d6d6d 0,
-          #6d6d6d 4px,
-          transparent 4px,
-          transparent 8px
-        );
-      }
-    }
-
-    &-Disabled {
-      opacity: 0.3;
-    }
   }
 
   &-Add {
