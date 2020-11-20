@@ -9,6 +9,9 @@
         <div class="d-flex justify-end px-4 mb-n1">
           <span
             class="d-inline-block"
+            :class="{
+              'PlaygroundForm-ResultList-Disabled': running,
+            }"
             style="font-size: 0.82rem; font-weight: 400; text-align: end"
             >cos類似度</span
           >
