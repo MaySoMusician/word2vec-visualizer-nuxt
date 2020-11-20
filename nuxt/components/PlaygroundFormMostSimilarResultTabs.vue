@@ -5,7 +5,7 @@
       :reverse-transition="resultTabTransition"
     >
       <v-divider />
-      <div>
+      <div v-if="similarities.length > 0">
         <div class="d-flex justify-end px-4 mb-n1">
           <span
             class="d-inline-block"
@@ -38,6 +38,9 @@
             </v-list-item-content>
           </v-list-item>
         </v-list>
+      </div>
+      <div v-else class="text-center py-3">
+        <span>ここに結果が表示されます</span>
       </div>
       <v-divider />
       <v-expansion-panels accordion flat tile>
