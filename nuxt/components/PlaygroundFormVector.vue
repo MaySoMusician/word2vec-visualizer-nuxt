@@ -130,7 +130,7 @@ export default Vue.extend<Data, Method, Computed, unknown>({
 
       try {
         const res = await this.$axios.get<any>(
-          `https://api.playwithjapanese.fun/vector?word=${wordEncoded}`
+          `https://word2vec-api-4leswxstwq-an.a.run.app/vector?word=${wordEncoded}`
         )
         if (res.status === 200) {
           const result = res.data
