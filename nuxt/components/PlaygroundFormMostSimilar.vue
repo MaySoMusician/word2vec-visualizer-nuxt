@@ -219,7 +219,7 @@ export default Vue.extend<Data, Method, Computed, unknown>({
 
       try {
         const res = await this.$axios.get<any>(
-          `https://api.playwithjapanese.fun/most-similar${paramaters}`
+          `https://word2vec-api-4leswxstwq-an.a.run.app/most-similar${paramaters}`
         )
         if (res.status === 200) {
           const result = res.data.result as [string, number][]
