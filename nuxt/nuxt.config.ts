@@ -47,7 +47,7 @@ const config: NuxtConfig = {
       {
         hid: 'og:image',
         property: 'og:image',
-        content: 'https://playwithjapanese.fun/ogp-image-1.png',
+        content: 'https://word2vec-visualizer.web.app/ogp-image-1.png',
       },
       {
         hid: 'twitter:card',

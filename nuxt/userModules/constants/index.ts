@@ -11,4 +11,4 @@ export const titlePerPage = {
   feedback: '不具合・要望フォーム',
 }
 
-export const baseUrl = 'https://playwithjapanese.fun/'
+export const baseUrl = 'https://word2vec-visualizer.web.app/'
